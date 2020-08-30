@@ -28,6 +28,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  flutter_launcher_icons: ^0.7.5
 
 
 flutter:
@@ -45,3 +47,9 @@ flutter:
 
 flutter_intl:
   enabled: true
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/ic_launcher.png"
