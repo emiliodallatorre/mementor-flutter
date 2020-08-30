@@ -18,6 +18,12 @@ dependencies:
   # Grafica
   google_fonts: ^1.1.0
 
+  # Logica
+  provider: ^4.3.2+1
+
+  # Utilità
+  simple_database: ^1.0.5
+
 
 dev_dependencies:
   flutter_test:
