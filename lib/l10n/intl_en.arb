@@ -1,5 +1,13 @@
 {
   "mementor": "Mementor",
   "debit": "Debit",
-  "credit": "Credit"
+  "credit": "Credit",
+  "newDebit": "New debit",
+  "newCredit": "New credit",
+  "invalidData": "Invalid format.",
+  "save": "Save",
+  "debtor": "Debtor",
+  "creditor": "Creditor",
+  "causal": "Causal",
+  "insertData": "Compile this field."
 }

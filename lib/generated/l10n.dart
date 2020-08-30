@@ -62,6 +62,86 @@ class S {
       args: [],
     );
   }
+
+  /// `New debit`
+  String get newDebit {
+    return Intl.message(
+      'New debit',
+      name: 'newDebit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New credit`
+  String get newCredit {
+    return Intl.message(
+      'New credit',
+      name: 'newCredit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid format.`
+  String get invalidData {
+    return Intl.message(
+      'Invalid format.',
+      name: 'invalidData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debtor`
+  String get debtor {
+    return Intl.message(
+      'Debtor',
+      name: 'debtor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creditor`
+  String get creditor {
+    return Intl.message(
+      'Creditor',
+      name: 'creditor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Causal`
+  String get causal {
+    return Intl.message(
+      'Causal',
+      name: 'causal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Compile this field.`
+  String get insertData {
+    return Intl.message(
+      'Compile this field.',
+      name: 'insertData',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,5 +1,13 @@
 {
   "mementor": "Mementor",
-  "debit": "Dare",
-  "credit": "Avere"
+  "debit": "Debiti",
+  "credit": "Crediti",
+  "newDebit": "Nuovo debito",
+  "newCredit": "Nuovo credito",
+  "invalidData": "Formato non valido.",
+  "save": "Salva",
+  "debtor": "Debitore",
+  "creditor": "Creditore",
+  "causal": "Causale",
+  "insertData": "Compila questo campo."
 }

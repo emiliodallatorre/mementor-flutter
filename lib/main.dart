@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mementor/generated/l10n.dart';
+import 'package:mementor/interface/screen/create_record_screen.dart';
 import 'package:mementor/interface/screen/home_screen.dart';
 
 void main() {
@@ -22,10 +22,12 @@ class Mementor extends StatelessWidget {
     return MaterialApp(
       title: 'Mementor',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryColor: Colors.white,
         fontFamily: "NotoSerif",
+        buttonTheme: ButtonThemeData(buttonColor: Colors.amberAccent),
+        inputDecorationTheme: InputDecorationTheme(focusedBorder: UnderlineInputBorder()),
       ),
       home: HomeScreen(),
       localizationsDelegates: [
@@ -36,6 +38,7 @@ class Mementor extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       routes: <String, Widget Function(BuildContext)>{
         HomeScreen.route: (BuildContext context) => HomeScreen(),
+        CreateRecordScreen.route: (BuildContext context) => CreateRecordScreen(),
       },
     );
   }

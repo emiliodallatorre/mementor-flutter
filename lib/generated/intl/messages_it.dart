@@ -21,8 +21,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "credit" : MessageLookupByLibrary.simpleMessage("Avere"),
-    "debit" : MessageLookupByLibrary.simpleMessage("Dare"),
-    "mementor" : MessageLookupByLibrary.simpleMessage("Mementor")
+    "causal" : MessageLookupByLibrary.simpleMessage("Causale"),
+    "credit" : MessageLookupByLibrary.simpleMessage("Crediti"),
+    "creditor" : MessageLookupByLibrary.simpleMessage("Creditore"),
+    "debit" : MessageLookupByLibrary.simpleMessage("Debiti"),
+    "debtor" : MessageLookupByLibrary.simpleMessage("Debitore"),
+    "insertData" : MessageLookupByLibrary.simpleMessage("Compila questo campo."),
+    "invalidData" : MessageLookupByLibrary.simpleMessage("Formato non valido."),
+    "mementor" : MessageLookupByLibrary.simpleMessage("Mementor"),
+    "newCredit" : MessageLookupByLibrary.simpleMessage("Nuovo credito"),
+    "newDebit" : MessageLookupByLibrary.simpleMessage("Nuovo debito"),
+    "save" : MessageLookupByLibrary.simpleMessage("Salva")
   };
 }
