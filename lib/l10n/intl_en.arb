@@ -9,5 +9,6 @@
   "debtor": "Debtor",
   "creditor": "Creditor",
   "causal": "Causal",
-  "insertData": "Compile this field."
+  "insertData": "Compile this field.",
+  "noRecords": "No records yet"
 }

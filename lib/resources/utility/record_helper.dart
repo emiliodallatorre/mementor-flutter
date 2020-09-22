@@ -11,12 +11,19 @@ class RecordHelper {
   static Future<void> addRecord(RecordModel record) async {
     List<RecordModel> allRecords = await RecordProvider.getAllRecords();
 
-    if (allRecords.where((element) => element.id == record.id).isNotEmpty)
-      throw "Esiste già un record con questo id!";
+    if (allRecords.where((element) => element.id == record.id).isNotEmpty){
+      editRecord(record, allRecords);
+    }
     else {
       _database.add(record);
       debugPrint("Record salvato con successo.");
     }
+  }
+  
+  static Future<void> editRecord(RecordModel record, List<RecordModel> recordList) async {
+    _database.insert(record, recordList.indexWhere((element) => element.id == record.id));
+    
+    debugPrint("Modificato il record ${record.id}.");
   }
 
   /// Rimuove un record con l'id [recordId] e restituisce un errore se questo non esiste.
@@ -29,5 +36,12 @@ class RecordHelper {
       await _database.removeAt(allRecords.indexWhere((element) => element.id == recordId));
       debugPrint("Rimosso il record $recordId.");
     }
+  }
+
+  /// Rimuove tutti i record.
+  static Future<void> removeAllRecords() async {
+    _database.clear();
+
+    debugPrint("Resettati tutti i record.");
   }
 }

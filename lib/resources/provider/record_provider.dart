@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mementor/models/record_model.dart';
 import 'package:mementor/references.dart';
 import 'package:simple_database/simple_database.dart';
@@ -7,14 +8,16 @@ class RecordProvider {
 
   /// Fornisce la lista di tutti i record salvati nel database locale.
   static Future<List<RecordModel>> getAllRecords() async {
-    List<RecordModel> allRecords = await _database.getAll();
+    List<RecordModel> allRecords = List<RecordModel>();
+
+    allRecords.addAll((await _database.getAll()).cast());
 
     return allRecords;
   }
 
   /// Fornisce il record salvato - se esiste - con l'id [recordId].
   static Future<RecordModel> getRecordWithId(String recordId) async {
-    List<RecordModel> allRecords = await _database.getAll();
+    List<RecordModel> allRecords = (await _database.getAll()).cast();
 
     return allRecords.where((element) => element.id == recordId).single;
   }

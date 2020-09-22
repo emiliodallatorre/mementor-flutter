@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mementor/generated/l10n.dart';
 import 'package:mementor/models/record_model.dart';
 import 'package:mementor/resources/utility/record_helper.dart';
+import 'package:random_string/random_string.dart';
 
 class CreateRecordScreen extends StatelessWidget {
   static const String route = "/createRecordScreen";
@@ -12,8 +13,16 @@ class CreateRecordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    recordType = ModalRoute.of(context).settings.arguments as RecordType;
-    record.recordType = recordType;
+    if (ModalRoute.of(context).settings.arguments is RecordType) {
+      recordType = ModalRoute.of(context).settings.arguments as RecordType;
+      record.recordType = recordType;
+
+      debugPrint("Sto creando un record.");
+    } else {
+      record = ModalRoute.of(context).settings.arguments;
+
+      debugPrint("Sto modificando un record.");
+    }
 
     return Scaffold(
       resizeToAvoidBottomPadding: true,
@@ -92,8 +101,10 @@ class CreateRecordScreen extends StatelessWidget {
                   if (_formKey.currentState.validate()) {
                     FocusScope.of(context).requestFocus(FocusNode());
                     _formKey.currentState.save();
-                  
+                    if (record.id == null) record.id = randomAlphaNumeric(20);
+
                     await RecordHelper.addRecord(record);
+                    Navigator.of(context).pop();
                   }
                 },
               ),

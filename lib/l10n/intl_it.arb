@@ -9,5 +9,6 @@
   "debtor": "Debitore",
   "creditor": "Creditore",
   "causal": "Causale",
-  "insertData": "Compila questo campo."
+  "insertData": "Compila questo campo.",
+  "noRecords": "Nessun record per ora"
 }
