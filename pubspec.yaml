@@ -23,6 +23,8 @@ dependencies:
 
   # Utilità
   simple_database: ^1.0.5
+  json_annotation: ^3.0.1
+  random_string: ^2.1.0
 
 
 dev_dependencies:
@@ -30,6 +32,8 @@ dev_dependencies:
     sdk: flutter
   
   flutter_launcher_icons: ^0.7.5
+  json_serializable: ^3.4.1
+  build_runner: ^1.10.2
 
 
 flutter:

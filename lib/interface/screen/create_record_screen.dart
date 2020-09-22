@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mementor/generated/l10n.dart';
 import 'package:mementor/models/record_model.dart';
+import 'package:mementor/resources/utility/record_helper.dart';
 
 class CreateRecordScreen extends StatelessWidget {
   static const String route = "/createRecordScreen";
 
   RecordType recordType;
-  RecordModel recordModel = RecordModel();
+  RecordModel record = RecordModel();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     recordType = ModalRoute.of(context).settings.arguments as RecordType;
-    recordModel.recordType = recordType;
+    record.recordType = recordType;
 
     return Scaffold(
       resizeToAvoidBottomPadding: true,
@@ -46,10 +47,8 @@ class CreateRecordScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline2,
                               decoration: InputDecoration(hintText: "0,00", suffixText: "€"),
                               validator: (String value) =>
-                                  double.tryParse(value.replaceAll(",", ".")) == null || double.tryParse(value.replaceAll(",", ".")) < 0
-                                      ? S.current.invalidData
-                                      : null,
-                              onSaved: (String value) => recordModel.value = double.parse(value.replaceAll(",", ".")),
+                                  double.tryParse(value.replaceAll(",", ".")) == null || double.tryParse(value.replaceAll(",", ".")) < 0 ? S.current.invalidData : null,
+                              onSaved: (String value) => record.value = double.parse(value.replaceAll(",", ".")),
                             ),
                           ),
                           Spacer(),
@@ -62,14 +61,12 @@ class CreateRecordScreen extends StatelessWidget {
                           labelStyle: TextStyle(color: Colors.black54),
                         ),
                         validator: (String value) => value.isEmpty ? S.current.insertData : null,
-                        onSaved: (String recipient) => recordModel.recipient = recipient,
+                        onSaved: (String recipient) => record.recipient = recipient,
                       ),
                       Expanded(
                         child: TextFormField(
-                          decoration: InputDecoration(
-                              labelText: S.current.causal + ":",
-                              labelStyle: TextStyle(color: Colors.black54),
-                              floatingLabelBehavior: FloatingLabelBehavior.always),
+                          decoration:
+                              InputDecoration(labelText: S.current.causal + ":", labelStyle: TextStyle(color: Colors.black54), floatingLabelBehavior: FloatingLabelBehavior.always),
                           autocorrect: true,
                           minLines: 900,
 
@@ -77,13 +74,13 @@ class CreateRecordScreen extends StatelessWidget {
                           keyboardType: TextInputType.multiline,
                           //expands: true,
                           maxLength: 140,
-                          onSaved: (String causal) => recordModel.causal = causal,
+                          onSaved: (String causal) => record.causal = causal,
                         ),
                       ),
                       InputDatePickerFormField(
                         firstDate: DateTime(2000),
                         lastDate: DateTime.now(),
-                        onDateSaved: (DateTime date) => recordModel.date = date,
+                        onDateSaved: (DateTime date) => record.date = date,
                       ),
                     ],
                   ),
@@ -91,12 +88,12 @@ class CreateRecordScreen extends StatelessWidget {
               ),
               OutlineButton(
                 child: Container(width: double.infinity, child: Center(child: Text(S.current.save))),
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     FocusScope.of(context).requestFocus(FocusNode());
                     _formKey.currentState.save();
-
-                    // TODO: Salvare il record.
+                  
+                    await RecordHelper.addRecord(record);
                   }
                 },
               ),

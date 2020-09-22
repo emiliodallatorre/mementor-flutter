@@ -5,5 +5,4 @@ class DebitPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container();
   }
-
 }

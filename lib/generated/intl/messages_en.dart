@@ -20,17 +20,18 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "causal" : MessageLookupByLibrary.simpleMessage("Causal"),
-    "credit" : MessageLookupByLibrary.simpleMessage("Credit"),
-    "creditor" : MessageLookupByLibrary.simpleMessage("Creditor"),
-    "debit" : MessageLookupByLibrary.simpleMessage("Debit"),
-    "debtor" : MessageLookupByLibrary.simpleMessage("Debtor"),
-    "insertData" : MessageLookupByLibrary.simpleMessage("Compile this field."),
-    "invalidData" : MessageLookupByLibrary.simpleMessage("Invalid format."),
-    "mementor" : MessageLookupByLibrary.simpleMessage("Mementor"),
-    "newCredit" : MessageLookupByLibrary.simpleMessage("New credit"),
-    "newDebit" : MessageLookupByLibrary.simpleMessage("New debit"),
-    "save" : MessageLookupByLibrary.simpleMessage("Save")
-  };
+
+  static _notInlinedMessages(_) => <String, Function>{
+        "causal": MessageLookupByLibrary.simpleMessage("Causal"),
+        "credit": MessageLookupByLibrary.simpleMessage("Credit"),
+        "creditor": MessageLookupByLibrary.simpleMessage("Creditor"),
+        "debit": MessageLookupByLibrary.simpleMessage("Debit"),
+        "debtor": MessageLookupByLibrary.simpleMessage("Debtor"),
+        "insertData": MessageLookupByLibrary.simpleMessage("Compile this field."),
+        "invalidData": MessageLookupByLibrary.simpleMessage("Invalid format."),
+        "mementor": MessageLookupByLibrary.simpleMessage("Mementor"),
+        "newCredit": MessageLookupByLibrary.simpleMessage("New credit"),
+        "newDebit": MessageLookupByLibrary.simpleMessage("New debit"),
+        "save": MessageLookupByLibrary.simpleMessage("Save")
+      };
 }
