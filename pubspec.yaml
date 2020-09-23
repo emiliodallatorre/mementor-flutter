@@ -20,6 +20,7 @@ dependencies:
 
   # Logica
   provider: ^4.3.2+1
+  rxdart: ^0.24.1
 
   # Utilità
   simple_database: ^1.0.5

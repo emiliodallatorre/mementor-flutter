@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mementor/generated/l10n.dart';
+import 'package:mementor/interface/pages/credit_page.dart';
 import 'package:mementor/interface/pages/debit_page.dart';
 import 'package:mementor/interface/screen/create_record_screen.dart';
 import 'package:mementor/models/record_model.dart';
@@ -47,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       controller: tabController,
       children: [
         DebitPage(),
-        Container(),
+        CreditPage(),
       ],
     );
   }

@@ -4,13 +4,13 @@ import 'package:mementor/generated/l10n.dart';
 import 'package:mementor/interface/widget/record_list_element.dart';
 import 'package:mementor/models/record_model.dart';
 
-class DebitPage extends StatelessWidget {
+class CreditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    recordBloc.getAllDebits();
+    recordBloc.getAllCredits();
 
     return StreamBuilder<List<RecordModel>>(
-      stream: recordBloc.allDebits,
+      stream: recordBloc.allCredits,
       builder: (BuildContext context, AsyncSnapshot<List<RecordModel>> recordsSnapshot) {
         if (recordsSnapshot.hasData) {
           if (recordsSnapshot.data.isNotEmpty)

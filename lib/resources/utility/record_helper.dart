@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mementor/bloc/record_bloc.dart';
 import 'package:mementor/models/record_model.dart';
 import 'package:mementor/references.dart';
 import 'package:mementor/resources/provider/record_provider.dart';
@@ -11,18 +12,20 @@ class RecordHelper {
   static Future<void> addRecord(RecordModel record) async {
     List<RecordModel> allRecords = await RecordProvider.getAllRecords();
 
-    if (allRecords.where((element) => element.id == record.id).isNotEmpty){
+    if (allRecords.where((element) => element.id == record.id).isNotEmpty) {
       editRecord(record, allRecords);
-    }
-    else {
-      _database.add(record);
+    } else {
+      await _database.add(record);
       debugPrint("Record salvato con successo.");
     }
+
+    recordBloc.getAllRecords();
   }
-  
+
   static Future<void> editRecord(RecordModel record, List<RecordModel> recordList) async {
-    _database.insert(record, recordList.indexWhere((element) => element.id == record.id));
-    
+    await _database.removeAt(recordList.indexWhere((element) => element.id == record.id));
+    await _database.add(record);
+
     debugPrint("Modificato il record ${record.id}.");
   }
 
@@ -36,12 +39,16 @@ class RecordHelper {
       await _database.removeAt(allRecords.indexWhere((element) => element.id == recordId));
       debugPrint("Rimosso il record $recordId.");
     }
+
+    recordBloc.getAllRecords();
   }
 
   /// Rimuove tutti i record.
   static Future<void> removeAllRecords() async {
-    _database.clear();
+    await _database.clear();
 
     debugPrint("Resettati tutti i record.");
+
+    recordBloc.getAllRecords();
   }
 }

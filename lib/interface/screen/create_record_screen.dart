@@ -13,6 +13,8 @@ class CreateRecordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint((ModalRoute.of(context).settings.arguments is RecordType).toString());
+
     if (ModalRoute.of(context).settings.arguments is RecordType) {
       recordType = ModalRoute.of(context).settings.arguments as RecordType;
       record.recordType = recordType;
@@ -50,10 +52,11 @@ class CreateRecordScreen extends StatelessWidget {
                           Expanded(
                             flex: 3,
                             child: TextFormField(
-                              autofocus: true,
+                              // autofocus: true,
                               keyboardType: TextInputType.numberWithOptions(signed: false),
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.headline2,
+                              initialValue: record.value?.toStringAsFixed(2),
                               decoration: InputDecoration(hintText: "0,00", suffixText: "€"),
                               validator: (String value) =>
                                   double.tryParse(value.replaceAll(",", ".")) == null || double.tryParse(value.replaceAll(",", ".")) < 0 ? S.current.invalidData : null,
@@ -69,6 +72,7 @@ class CreateRecordScreen extends StatelessWidget {
                           labelText: (recordType == RecordType.DEBIT ? S.current.debtor : S.current.creditor) + ":",
                           labelStyle: TextStyle(color: Colors.black54),
                         ),
+                        initialValue: record.recipient,
                         validator: (String value) => value.isEmpty ? S.current.insertData : null,
                         onSaved: (String recipient) => record.recipient = recipient,
                       ),
@@ -78,7 +82,7 @@ class CreateRecordScreen extends StatelessWidget {
                               InputDecoration(labelText: S.current.causal + ":", labelStyle: TextStyle(color: Colors.black54), floatingLabelBehavior: FloatingLabelBehavior.always),
                           autocorrect: true,
                           minLines: 900,
-
+                          initialValue: record.causal,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,
                           //expands: true,
@@ -89,6 +93,7 @@ class CreateRecordScreen extends StatelessWidget {
                       InputDatePickerFormField(
                         firstDate: DateTime(2000),
                         lastDate: DateTime.now(),
+                        initialDate: record.date,
                         onDateSaved: (DateTime date) => record.date = date,
                       ),
                     ],
@@ -101,9 +106,10 @@ class CreateRecordScreen extends StatelessWidget {
                   if (_formKey.currentState.validate()) {
                     FocusScope.of(context).requestFocus(FocusNode());
                     _formKey.currentState.save();
-                    if (record.id == null) record.id = randomAlphaNumeric(20);
 
+                    if (record.id == null) record.id = randomAlphaNumeric(20);
                     await RecordHelper.addRecord(record);
+
                     Navigator.of(context).pop();
                   }
                 },
