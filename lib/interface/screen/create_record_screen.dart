@@ -13,7 +13,6 @@ class CreateRecordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint((ModalRoute.of(context).settings.arguments is RecordType).toString());
 
     if (ModalRoute.of(context).settings.arguments is RecordType) {
       recordType = ModalRoute.of(context).settings.arguments as RecordType;
@@ -23,7 +22,7 @@ class CreateRecordScreen extends StatelessWidget {
     } else {
       record = ModalRoute.of(context).settings.arguments;
 
-      debugPrint("Sto modificando un record.");
+      debugPrint("Sto modificando un record con id ${record.id}.");
     }
 
     return Scaffold(
